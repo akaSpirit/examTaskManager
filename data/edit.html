@@ -16,20 +16,17 @@
                    class="form-control" value="${task.id}">
             <input type="hidden" id="date" name="date"
                    class="form-control" value="${task.date}">
-
             <div class="input-group mb-3">
                 <span class="input-group-text">Name</span>
                 <input type="text" id="name" name="name"
                        class="form-control" value="${task.name}" required>
             </div>
-
             <div class="input-group mb-3">
                 <span class="input-group-text">Description</span>
                 <textarea id="desc" name="desc"
                           class="form-control">${task.description}
                     </textarea>
             </div>
-
             <div class="input-group mb-3">
                 <span class="input-group-text">Type</span>
                 <select name="type">

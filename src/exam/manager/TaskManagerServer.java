@@ -53,6 +53,10 @@ public class TaskManagerServer extends BasicServer {
         String queryParams = getQueryParams(exchange);
         Map<String, String> params = Utils.parseUrlEncoded(queryParams, "&");
         String query = params.getOrDefault("query", "");
+        if (query.isEmpty()) {
+            responseNotFound(exchange, query, "");
+            return;
+        }
         if (query.equals("delete")) {
             String strId = params.getOrDefault("id", "");
 
@@ -62,9 +66,6 @@ public class TaskManagerServer extends BasicServer {
             String date = params.get("date");
             String url = String.format("/tasks?query=list&date=%s", date);
             redirect303(exchange, url);
-        }
-        if (query.isEmpty()) {
-            responseNotFound(exchange, query, "");
             return;
         }
         redirect303(exchange, "/");
