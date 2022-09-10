@@ -80,13 +80,11 @@ public abstract class BasicServer {
     }
 
     protected final void registerGet(String route, RouteHandler handler) {
-        registerGenericHandler("GET",route, handler);
-//        getRoutes().put("GET " + route, handler);
+        getRoutes().put("GET " + route, handler);
     }
 
     protected final void registerPost(String route, RouteHandler handler) {
-        registerGenericHandler("POST",route, handler);
-//        getRoutes().put("POST " + route, handler);
+        getRoutes().put("POST " + route, handler);
     }
 
     protected final void registerGenericHandler(String method, String route, RouteHandler handler) {
@@ -157,24 +155,6 @@ public abstract class BasicServer {
             exchange.getResponseHeaders().add("Location", path);
             exchange.sendResponseHeaders(303, 0);
             exchange.getResponseBody().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void respond403(HttpExchange exchange) {
-        try {
-            var data = "Авторизоваться не удалось, неверный идентификатор или пароль".getBytes();
-            sendByteData(exchange, ResponseCodes.NOT_FOUND, ContentType.TEXT_PLAIN, data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void respond200(HttpExchange exchange) {
-        try {
-            var data = "Удачная регистрация".getBytes();
-            sendByteData(exchange, ResponseCodes.OK, ContentType.TEXT_PLAIN, data);
         } catch (IOException e) {
             e.printStackTrace();
         }
