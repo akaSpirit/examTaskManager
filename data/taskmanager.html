@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <style>
+    a {
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+    }
+    a:hover {
+        background-color: rgba(0,0,0,.075);
+    }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="py-2" align="center">
+    Task Manager
+  </h2>
+  <h2 class="py-2" align="center">
+    ${month}
+  </h2>
+  <div class="row row-cols-5 ">
+    <div class="col text-end" style="width: 13%;">Mon</div>
+    <div class="col text-end" style="width: 13%;">Tue</div>
+    <div class="col text-end" style="width: 13%;">Wed</div>
+    <div class="col text-end" style="width: 13%;">Thu</div>
+    <div class="col text-end" style="width: 13%;">Fri</div>
+    <div class="col text-end" style="width: 13%;">Sat</div>
+    <div class="col text-end" style="width: 13%;">Sun</div>
+  </div>
+  <div class="row row-cols-5">
+    <#list days as day>
+    <a href="/tasks?query=list&date=${day}" style="width: 13%;"
+       class="d-flex text-dark border">
+      <div class="col">
+        <#if day=currentDate>
+        <div class="text-start bg-dark text-light">${day}</div>
+        <#else><div class="text-start">${day}</div>
+        </#if>
+      <div class="container">
+          <div class="row row-cols-3 pb-4">
+            <#list tasks as task>
+            <#if task.date == day>
+            <div class="col">
+              <#if task.type == "routine">
+              <span>R</span>
+              <#elseif task.type == "urgent">
+              <span>U</span>
+              <#elseif task.type == "work">
+              <span>W</span>
+              <#elseif task.type == "shopping">
+              <span>S</span>
+              <#elseif task.type == "other">
+              <span>O</span>
+            </#if>
+          </div>
+        </#if>
+      </#list>
+  </div>
+</div>
+</div>
+</a>
+</#list>
+</div>
+</div>
+</body>
+
+</table>
+</div>
+</body>
+</html>
